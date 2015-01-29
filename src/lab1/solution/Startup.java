@@ -1,4 +1,4 @@
-package lab1;
+package lab1.solution;
 
 /**
  * In this lab your challenge is to fix the code in both classes to use
@@ -19,16 +19,12 @@ public class Startup {
             may need to create a new class that talks to Employee. This does
             not have to be a GUI class.
         */
-        Employee employee = new Employee();
-        employee.firstName = "Peter";
-        employee.lastName = "Piper";
-        employee.ssn = "333-1234";
+        Hiring hire = new Hiring("Peter","Piper","333-1234");
+        hire.newEmployee("3a");
         
-        employee.meetDepartmentStaff();
-        employee.meetWithHrForBenefitAndSalryInfo();
-        employee.reviewDeptPolicies();
+       
 
-        System.out.println("The employee's status is: " + employee.getStatus());
+        System.out.println("The employee's status is: " + hire.getStatus());
     }
     
     
