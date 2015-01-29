@@ -13,22 +13,19 @@ import java.util.Date;
  * @author Mark
  */
 public class HrManager {
-     private boolean metWithHr;
-    private boolean metDeptStaff;
-    private boolean reviewedDeptPolicies;
-    private boolean movedIn;
-    private String cubeId;
+    
     private Date currentDate;
     private Employee employee;
+    private String cubeId;
      public HrManager(String fName, String lName,String sSN) {
         employee = new Employee(fName,lName,sSN);
         currentDate = new Date();
     }
      public void newEmployee (String cubeId){
-        this.meetWithHrForBenefitAndSalryInfo();
-        this.meetDepartmentStaff();
-        this.reviewDeptPolicies();
-        this.moveIntoCubicle(this.cubeId=cubeId);
+        employee.meetWithHrForBenefitAndSalryInfo();
+        employee.meetDepartmentStaff();
+        employee.reviewDeptPolicies();
+        employee.moveIntoCubicle(cubeId);
     }
     
 
@@ -36,11 +33,21 @@ public class HrManager {
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         String fmtDate = sdf.format(currentDate);
 
-        if(metWithHr && metDeptStaff
-           && reviewedDeptPolicies && movedIn) {
+        if(employee.isMetWithHr() && employee.isMetDeptStaff()
+           && employee.isReviewedDeptPolicies()&& employee.isMovedIn()) {
             return "Orientation is completed on: " + fmtDate;
         } else {
             return fmtDate + ": Orientation in progress...";
         }
     }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public String getCubeId() {
+        return cubeId;
+    }
+    
+    
 }
