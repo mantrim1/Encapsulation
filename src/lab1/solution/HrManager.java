@@ -21,28 +21,28 @@ public class HrManager {
         employee = new Employee(fName,lName,sSN);
         currentDate = new Date();
     }
-     public void newEmployee (String cubeId){
-        employee.meetWithHrForBenefitAndSalryInfo();
-        employee.meetDepartmentStaff();
-        employee.reviewDeptPolicies();
-        employee.moveIntoCubicle(cubeId);
+     public void newEmployee (String cubeId, HrManager hr){
+        employee.meetWithHrForBenefitAndSalryInfo(hr);
+        employee.meetDepartmentStaff(hr);
+        employee.reviewDeptPolicies(hr);
+        employee.moveIntoCubicle(cubeId,hr);
     }
     
 
     public String getStatus() {
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(currentDate);
-
+  
         if(employee.isMetWithHr() && employee.isMetDeptStaff()
            && employee.isReviewedDeptPolicies()&& employee.isMovedIn()) {
-            return "Orientation is completed on: " + fmtDate;
+            return "Orientation is completed on: " + getDateFormat();
         } else {
-            return fmtDate + ": Orientation in progress...";
+            return getDateFormat() + ": Orientation in progress...";
         }
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
+    public String getDateFormat(){
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+        String fmtDate = sdf.format(currentDate);
+        return fmtDate;
     }
 
     public String getCubeId() {

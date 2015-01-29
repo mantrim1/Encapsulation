@@ -21,30 +21,25 @@ public class Employee {
     private boolean reviewedDeptPolicies;
     private boolean movedIn;
     private String cubeId;
-   private HrManager hr;
+   
 
     public Employee(String fName, String lName,String sSN){
        firstName=fName;
        lastName=lName;
        ssn=sSN;
    }
-    private String getDateFormat(){
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(hr.getCurrentDate());
-        return fmtDate;
-    }
+    
    // Assume this must be performed first
-   public void meetWithHrForBenefitAndSalryInfo() {
-        
-        System.out.println("Met with Hr on " + getDateFormat());
+   public void meetWithHrForBenefitAndSalryInfo(HrManager hr) {        
+        System.out.println("Met with Hr on " + hr.getDateFormat());
         metWithHr = true;
     }
 
     // Assume this is must be performed second
-    public void meetDepartmentStaff() {
+    public void meetDepartmentStaff(HrManager hr) {
         if(metWithHr) {
             
-            System.out.println("Met with Dept. Staff on " + getDateFormat());
+            System.out.println("Met with Dept. Staff on " + hr.getDateFormat());
             metDeptStaff = true;
         } else {
             System.out.println("Sorry, you cannot meet with "
@@ -53,10 +48,10 @@ public class Employee {
     }
 
     // Assume this must be performed third
-    public void reviewDeptPolicies() {
+    public void reviewDeptPolicies(HrManager hr) {
         if(metWithHr && metDeptStaff) {
-            String fmtDate=getDateFormat();
-            System.out.println("Reviewed Dept. Policies on " + getDateFormat());
+
+            System.out.println("Reviewed Dept. Policies on " + hr.getDateFormat());
             reviewedDeptPolicies = true;
         } else {
             System.out.println("Sorry, you cannot review "
@@ -66,9 +61,9 @@ public class Employee {
     }
 
     // Assume this must be performed 4th
-    public void moveIntoCubicle(String cubeId) {
+    public void moveIntoCubicle(String cubeId,HrManager hr) {
         if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
-            System.out.println("Moved into cube on " + getDateFormat());
+            System.out.println("Moved into cube on " + hr.getDateFormat());
             this.cubeId = cubeId;
             this.movedIn = true;
         } else {
